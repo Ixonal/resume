@@ -1,6 +1,6 @@
 install:
   - npm install
 
- script:
-   - npm build
-   - npm test
+script:
+  - npm build
+  - npm test
