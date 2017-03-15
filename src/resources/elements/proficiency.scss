@@ -1,0 +1,26 @@
+@import "../../styles/common";
+
+proficiency {
+  display: block;
+
+  .proficiency-container {
+    text-align: justify;
+  }
+
+  &.condensed {
+    display: inline-block; 
+    width: (100% / 3);
+    &>.align-left {
+      text-align: left;
+    }
+    &>.align-center {
+      text-align: center;
+    }
+    &>.align-right {
+      text-align: right;
+    }
+    &>p {
+      margin: $padding-large;
+    }
+  }
+}

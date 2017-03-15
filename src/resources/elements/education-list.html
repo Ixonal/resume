@@ -1,0 +1,9 @@
+<template>
+  <require from="./education-list.css"></require>
+
+  <common-section heading="Education">
+    <div repeat.for="edu of education">
+      <education education.bind="edu"></education>
+    </div>
+  </common-section>
+</template>

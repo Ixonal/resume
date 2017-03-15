@@ -1,0 +1,18 @@
+<template>
+  <require from="./work-history.css"></require>
+
+  <h4 class="description">
+    ${business.name} - ${workHistory.title}
+  </h4>
+  <h5 class="clearfix" if.bind="workHistory.start">
+    <span class="period pull-left">
+      ${workHistory.start | date:'MM/YYYY'} - ${workHistory.end | date:'MM/YYYY'}
+    </span>
+    <span class="location pull-right">
+      ${business.city}<span if.bind="business.state">, ${business.state}</span>
+    </span>
+  </h5>
+  <p class="long-description">
+    ${workHistory.description}
+  </p>
+</template>

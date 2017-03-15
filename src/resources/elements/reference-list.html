@@ -1,0 +1,7 @@
+<template>
+  <require from="./reference-list.css"></require>
+
+  <common-section heading="References">
+    <reference repeat.for="reference of references" reference.bind="reference" business.bind="businessFor(reference)"></reference>
+  </common-section>
+</template>

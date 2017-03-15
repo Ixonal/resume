@@ -1,0 +1,7 @@
+<template>
+  <require from="./work-history-list.css"></require>
+
+  <common-section heading="Work History">
+    <work-history repeat.for="history of workHistory | sortBy: 'start':'desc'" work-history.bind="history" business.bind="businessFor(history)"></work-history>
+  </common-section>
+</template>

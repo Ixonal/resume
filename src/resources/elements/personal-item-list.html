@@ -1,0 +1,7 @@
+<template>
+  <require from="./personal-item-list.css"></require>
+
+  <common-section heading="Personal">
+    <personal-item repeat.for="personalItem of personalItems" personal-item.bind="personalItem"></personal-item>
+  </common-section>
+</template>

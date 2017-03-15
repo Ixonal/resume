@@ -1,0 +1,12 @@
+<template>
+  <require from="./proficiency-list.css"></require>
+
+  <common-section heading="Proficiencies">
+    <div>
+      <h4>
+        Proficient in several modern programming techniques and technologies
+      </h4>
+      <proficiency repeat.for="proficiency of proficiencies" proficiency.bind="proficiency" align.bind="alignmentFor($index)" condensed.bind="condensed"></proficiency>
+    </div>
+  </common-section>
+</template>

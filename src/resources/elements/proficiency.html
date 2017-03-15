@@ -1,0 +1,10 @@
+<template class="${condensed ? 'condensed' : ''}">
+  <require from="./proficiency.css"></require>
+
+  <p class="proficiency-container align-${align}" title="${proficiency.description}">
+    <span class="h5">${proficiency.name}</span>
+    <span if.bind="!condensed">
+      - ${proficiency.level}: ${proficiency.description}
+    </span>
+  </p>
+</template>

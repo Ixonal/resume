@@ -1,0 +1,25 @@
+
+@import "./variables";
+@import "./mixins";
+
+@mixin heading-gradient() {
+  @include vertical-gradient($heading-bg-primary, $heading-bg-secondary);
+}
+
+@mixin heading-styles() {
+  color: white;
+  display: block;
+  @include border-radius(3px);
+  @include heading-gradient();
+  border-right: none;
+  &:after {
+    content: " ";
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    width: 500px;
+    //@include horizontal-gradient(transparent, $page-background);
+    @include linear-gradient-x(145deg, transparent 0, transparent 20%, white 85%, white 100%);
+  }
+}

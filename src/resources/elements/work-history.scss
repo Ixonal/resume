@@ -1,0 +1,28 @@
+@import "../../styles/common";
+
+work-history {
+  display: block;
+  
+  &:not(:last-child) {
+    margin-bottom: $padding-large;
+  }
+  
+  &>.description {
+    margin: 0;
+  }
+
+  &>.period {
+    margin: 0;
+  }
+
+  &>.location {
+    margin: 0;
+  }
+
+  &>.long-description {
+    padding: $padding-large;
+    margin: 0;
+    text-align: justify;
+  }
+
+}

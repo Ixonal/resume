@@ -1,0 +1,136 @@
+{
+  "subject": {
+    "firstName": "Benjamin",
+    "lastName": "McGregor",
+    "address": "2712 Chumleigh Circle",
+    "city": "Tallahassee",
+    "state": "Florida",
+    "phone": 8507666589,
+    "email": "ixonal@gmail.com"
+  },
+  "businesses": [
+    {
+      "id": "FDOT-SM",
+      "name": "Florida Department of Transportation, Office of Surveying and Mapping",
+      "city": "Tallahassee",
+      "state": "Florida"
+    },
+    {
+      "id": "FDOT-BSSO",
+      "name": "Florida Department of Transportation, Business Systems Support Office",
+      "city": "Tallahassee",
+      "state": "Florida"
+    },
+    {
+      "id": "ST",
+      "name": "Silicon Tally",
+      "city": "Tallahassee",
+      "state": "Florida"
+    },
+    {
+      "id": "HC",
+      "name": "Hollywood 16 Cinemas",
+      "city": "Jackson",
+      "state": "Tennessee"
+    }
+  ],
+  "workHistory": [
+    {
+      "type": "work",
+      "business": "FDOT-SM",
+      "title": "Primary Developer",
+      "start": "8/2013",
+      "end": null,
+      "description": "Work as sole application developer within the office. Handle all matters pertaining to design, architecture, development, and maintenance of office owned applications. Work with other offices within the department to design custom solutions for their problems as well. Very trong emphasis on GIS based applications."
+    },
+    {
+      "type": "project",
+      "business": "FDOT-SM",
+      "title": "APLUS Application Rewrite",
+      "start": "8/2013",
+      "end": null,
+      "description": "Rewrote the APLUS (Aerial Photo Look-Up System) application used by the Image Services group to distribute statewide aerial photography to the public."
+    },
+    {
+      "type": "work",
+      "business": "FDOT-BSSO",
+      "title": "Developer",
+      "start": "12/2011",
+      "end": "8/2013",
+      "description": "Member of a development team for the Florida Department of Transportation; developed and maintained enterprise applications used throughout the state in a structured environment with rigorous standards, reviews, and testing practices. Became exceedingly proficient in client/UI development, and was often consulted on such issues."
+    },
+    {
+      "type": "work",
+      "business": "ST",
+      "title": "Lead Developer and Analyst",
+      "start": "3/2011",
+      "end": "8/2011",
+      "description": "Wrote a web application for a start-up venture which used heavy JavaScript manipulation of the DOM via jQuery to create a cross-browser multimedia document annotation system. The server-side application used a cluster of distributed “Play!” Framework servers running against a PostgreSQL database."
+    }
+  ],
+  "proficiencies": [
+    {
+      "name": "Operating Systems",
+      "level": "Highly Proficient",
+      "description": "Proficient in Windows and Linux."
+    },
+    {
+      "name": "Object Oriented Programming",
+      "level": "Highly Proficient",
+      "description": "Proficient in a number of Object Oriented programming languages, including C++, C#, and Java."
+    },
+    {
+      "name": "Web Technologies",
+      "level": "Highly Proficient",
+      "description": "Proficient in modern web development technologies and techniques including build systems (Gulp, Webpack), scripting languages (TypeScript/JavaScript), and CSS preprocessors (LESS, SASS)."
+    },
+    {
+      "name": "Testing",
+      "level": "Proficient",
+      "description": "Writes unit and integration tests to confirm correct functionality and address regressions."
+    }
+  ],
+  "education": [
+    {
+      "institutionName": "University of Tennessee",
+      "city": "Knoxville",
+      "state": "Tennessee",
+      "degreeType": "Bachelor",
+      "degreeFocus": "Computer Science"
+    }
+  ],
+  "personalItems": [
+    {
+      "text": "Contributes to open source projects (Aurelia, for instance)",
+      "links": []
+    },
+    {
+      "text": "Space travel Enthusiast",
+      "links": []
+    },
+    {
+      "text": "Two dogs and an interest in falconry",
+      "links": []
+    }
+  ], 
+  "references": [
+    {
+      "firstName": "Jared",
+      "lastName": "Causseaux",
+      "position": "State GIS Coordinator",
+      "email": "jared.causseaux@dot.state.fl.us",
+      "phone": 8504144336,
+      "city": "Tallahassee",
+      "state": "Florida"
+    },
+    {
+      "firstName": "Stephanie",
+      "lastName": "Schwinn",
+      "position": "Web Application Developer/Analyst",
+      "email": "stephanie.schwinn@dot.state.fl.us",
+      "phone": 8504914527,
+      "city": "Tallahassee",
+      "state": "Florida"
+    }
+  ]
+}

@@ -1,0 +1,25 @@
+@import "../../styles/common";
+
+common-header {
+  display: block;
+  position: relative;
+
+  & > h1 {
+    position: relative;
+    @include heading-styles();
+    padding: $padding-large;
+    
+  }
+  & > *:not(h1) {
+    position: relative;
+    padding: $padding-mid;
+  }
+
+  & > div > .slot-container {
+    margin-top: -45px;
+
+    & > a {
+      font-weight: bold;
+    }
+  }
+}

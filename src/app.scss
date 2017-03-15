@@ -1,0 +1,28 @@
+@import "./styles/common";
+@import "./styles/core";
+
+html {
+  display: block;
+  font-family: sans-serif;
+}
+
+body {
+  padding: 0;
+  margin-top: $padding-x-large;
+  position: relative;
+  display: block;
+  background: $page-background;
+
+  @media print {
+    width: 9.5in;
+  }
+  @media not print {
+    & > router-view {
+      display: block;
+      position: relative;
+      width: 1000px;
+      left: 50%;
+      margin-left: -500px;
+    }
+  }
+}

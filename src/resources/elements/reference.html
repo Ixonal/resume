@@ -1,0 +1,11 @@
+<template>
+  <require from="./reference.css"></require>
+
+  <h4>${reference.fullName}</h4>
+  <p class="reference-info">
+    ${business.name}<br>
+    ${business.city}, ${business.state}<br>
+    <a href="tel:${reference.phone}" title="Click to Call ${reference.fullName}">${reference.phone | phone}</a><br>
+    <a href="mailto:${reference.email}" title="Click to Email ${reference.fullName}">${reference.email}</a>
+  </p>
+</template>

@@ -1,0 +1,37 @@
+//for things that need to be included only once
+@import "./common";
+@import "./headers";
+
+body {
+  font-size: $font-size-base;
+  color: $font-color-base;
+  cursor: default;
+}
+
+a {
+  color: $link-color;
+  text-decoration: $link-text-decoration;
+  display: inline-block;
+
+  &:hover {
+    text-decoration: $link-text-decoration-hover;
+  }
+}
+
+.no-print {
+  @media print {
+    display: none;
+  }
+}
+
+.pull-left {
+  float: left !important;
+}
+
+.pull-right {
+  float: right !important;
+}
+
+.clearfix {
+  @include clearfix();
+}

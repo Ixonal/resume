@@ -1,0 +1,8 @@
+<template>
+  <require from="./resume-body"></require>
+
+  <common-header subject.bind="subject">
+    <a class="no-print" route-href="route: cv" title="Click to view as CV">CV View</a>
+  </common-header>
+  <resume-body education.bind="education" work-history.bind="workHistory" references.bind="references" businesses.bind="businesses" personal-items.bind="personalItems" proficiencies.bind="proficiencies"></resume-body>
+</template>

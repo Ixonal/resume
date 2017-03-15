@@ -1,0 +1,11 @@
+@import "../../styles/common";
+
+reference {
+  display: block;
+
+  &>.reference-info {
+    padding: $padding-large;
+
+    margin: 0;
+  }
+}

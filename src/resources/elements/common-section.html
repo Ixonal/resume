@@ -1,0 +1,8 @@
+<template>
+  <require from="./common-section.css"></require>
+
+  <fieldset>
+    <legend if.bind="heading"><h2>${heading}</h2></legend>
+    <slot></slot>
+  </fieldset>
+</template>

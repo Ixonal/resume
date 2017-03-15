@@ -1,0 +1,80 @@
+
+@mixin border-radius($radius) {
+  -webkit-border-radius: $radius;
+     -moz-border-radius: $radius;
+      -ms-border-radius: $radius;
+          border-radius: $radius;
+}
+
+@mixin vertical-gradient($start-color, $end-color) {
+  @include linear-gradient(180deg, $start-color, $end-color);
+}
+
+@mixin vertical-gradient-3($start-color, $mid-color, $end-color) {
+  @include linear-gradient-3(180deg, $start-color, $mid-color, $end-color);
+}
+
+@mixin horizontal-gradient($start-color, $end-color) {
+  @include linear-gradient(90deg, $start-color, $end-color);
+}
+
+@mixin horizontal-gradient-3($start-color, $mid-color, $end-color) {
+  @include linear-gradient-3(90deg, $start-color, $mid-color, $end-color);
+}
+
+@mixin diagonal-gradient-tl($start-color, $end-color) {
+  @include linear-gradient(135deg, $start-color, $end-color);
+}
+
+@mixin diagonal-gradient-tl-3($start-color, $mid-color, $end-color) {
+  @include linear-gradient-3(135deg, $start-color, $mid-color, $end-color);
+}
+
+@mixin diagonal-gradient-tr($start-color, $end-color) {
+  @include linear-gradient(225deg, $start-color, $end-color);
+}
+
+@mixin diagonal-gradient-tr-3($start-color, $mid-color, $end-color) {
+  @include linear-gradient-3(225deg, $start-color, $mid-color, $end-color);
+}
+
+@mixin linear-gradient($angle, $start-color, $end-color) {
+  @include linear-gradient-x($angle, $start-color 0, $end-color 100%);
+  // $oldAngle: $angle - 90;
+  // background: -moz-linear-gradient($oldAngle, $start-color 0%, $end-color 100%);
+  // background: -webkit-linear-gradient($oldAngle, $start-color 0%, $end-color 100%);
+  // background: -o-linear-gradient($oldAngle, $start-color 0%, $end-color 100%);
+  // background: -ms-linear-gradient($oldAngle, $start-color 0%, $end-color 100%);
+  // background: linear-gradient($angle, $start-color 0%, $end-color 100%);
+}
+
+@mixin linear-gradient-3($angle, $start-color, $mid-color, $end-color) {
+  @include linear-gradient-x($angle, $start-color 0, $mid-color 50%, $end-color 100%);
+  // $oldAngle: $angle - 90;
+  // background: -moz-linear-gradient($oldAngle, $start-color 0%, $mid-color 50%, $end-color 100%);
+  // background: -webkit-linear-gradient($oldAngle, $start-color 0%, $mid-color 50%, $end-color 100%);
+  // background: -o-linear-gradient($oldAngle, $start-color 0%, $mid-color 50%, $end-color 100%);
+  // background: -ms-linear-gradient($oldAngle, $start-color 0%, $mid-color 50%, $end-color 100%);
+  // background: linear-gradient($angle, $start-color 0%, $mid-color 50%, $end-color 100%);
+}
+
+@mixin linear-gradient-x($angle, $stops...) {
+  $oldAngle: $angle - 90;
+  background-color: nth(nth($stops, 1), 1);
+  background-image: -moz-linear-gradient($oldAngle, $stops);
+  background-image: -webkit-linear-gradient($oldAngle, $stops);
+  background-image: -o-linear-gradient($oldAngle, $stops);
+  background-image: -ms-linear-gradient($oldAngle, $stops);
+  background-image: linear-gradient($angle, $stops);
+}
+
+@mixin clearfix() {
+  &:before,
+  &:after {
+    content: " ";
+    display: table;
+  }
+  &:after {
+    clear: both;
+  }
+}

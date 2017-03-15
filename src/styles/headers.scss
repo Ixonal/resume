@@ -1,0 +1,16 @@
+@import "./variables";
+
+@for $c from 1 to length($scale-factor-list) {
+  $scale-factor: nth($scale-factor-list, $c);
+  .h#{$c},h#{$c} {
+    font-size: $font-size-base * $scale-factor;
+    margin: 0;
+    @if $c > 4 {
+      font-weight: normal;
+      font-style: italic;
+    } @else {
+      font-weight: bold;
+      font-style: normal;
+    }
+  }
+}
