@@ -20,6 +20,6 @@
     bottom: 0;
     width: 500px;
     //@include horizontal-gradient(transparent, $page-background);
-    @include linear-gradient-x(145deg, transparent 0, transparent 20%, white 85%, white 100%);
+    @include linear-gradient-x(145deg, transparent 0, transparent 15%, $page-background 85%, $page-background 100%);
   }
 }
