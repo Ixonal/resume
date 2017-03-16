@@ -2,6 +2,11 @@
 @import "./common";
 @import "./headers";
 
+html {
+  -ms-text-size-adjust: 100%;
+  -webkit-text-size-adjust: 100%;
+}
+
 body {
   font-size: $font-size-base;
   color: $font-color-base;

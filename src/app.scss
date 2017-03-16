@@ -21,16 +21,15 @@ body {
     display: block;
     position: relative;
 
-    @media screen and (min-width: 1050px) {
-      width: 1000px;
+    @media screen and (min-width: $responsive-cutoff-min) {
+      width: $responsive-cutoff-width;
       left: 50%;
-      margin-left: -500px;
+      margin-left: $responsive-cutoff-width / -2;
     }
-    @media screen and (max-width: 1049px) {
-
+    @media screen and (max-width: $responsive-cutoff-max) {
       width: 100%;
       left: 0;
-      margin: $padding-large;
+      margin: 0;
     }
   }
 }

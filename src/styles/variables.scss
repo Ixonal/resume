@@ -1,6 +1,10 @@
 
 $page-background: white;
 
+$responsive-cutoff-min: 1050px;
+$responsive-cutoff-max: $responsive-cutoff-min - 1;
+$responsive-cutoff-width: 1000px;
+
 //scale factors used periodically
 $scale-factor-1: 2.5;
 $scale-factor-2: 1.75;

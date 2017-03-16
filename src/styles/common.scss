@@ -8,11 +8,15 @@
 
 @mixin heading-styles() {
   color: white;
+  @media screen and (max-width: $responsive-cutoff-max) {
+    text-shadow: 0 0 2px rgba(0,0,0,.75);
+  }
+  
   display: block;
   @include border-radius(3px);
   @include heading-gradient();
   border-right: none;
-  &:after {
+  &:before {
     content: " ";
     position: absolute;
     top: 0;

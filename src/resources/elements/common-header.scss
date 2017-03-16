@@ -8,7 +8,10 @@ common-header {
     position: relative;
     @include heading-styles();
     padding: $padding-large;
-    
+    & > * {
+      position: relative;
+    }
+
   }
   & > *:not(h1) {
     position: relative;
