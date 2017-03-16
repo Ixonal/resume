@@ -1,15 +1,18 @@
 {
   "name": "resume",
-  "description": "An Aurelia client application.",
+  "description": "Benjamin McGregor's Resume App",
   "version": "0.1.0",
   "repository": {
-    "type": "???",
-    "url": "???"
+    "type": "GIT",
+    "url": "https://ixonal.github.io/resume"
   },
   "license": "MIT",
   "scripts": {
     "start": "au run --watch",
-    "build": "au build",
+    "build": "npm run build:dev",
+    "build:dev": "au build --env dev",
+    "build:stage": "au build --env stage",
+    "build:prod": "au build --env prod",
     "test": "au test"
   },
   "dependencies": {
