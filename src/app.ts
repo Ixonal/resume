@@ -5,6 +5,7 @@ export class App {
   configureRouter(config: RouterConfiguration, router: Router) {
     config.title = "Benjamin McGregor";
     config.options.pushState = true;
+    config.options.root = "/resume";
     
     config.map([
       { route: "",       name: "root",   redirect: "resume" },
