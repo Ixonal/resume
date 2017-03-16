@@ -3,6 +3,9 @@
 
   <h1><span>${subject.fullName}</span></h1>
   <div class="clearfix">
+    <div class="slot-container pull-right">
+      <slot></slot>
+    </div>
     <div class="pull-left">
       <h4>
         ${subject.address}<br>
@@ -10,9 +13,9 @@
         <a href="tel:${subject.phone}" title="Click to Call ${subject.fullName}">${subject.phone | phone}</a><br>
         <a href="mailto:${subject.email}" title="Click to Email ${subject.fullName}">${subject.email}</a>
       </h4>
-    </div>
-    <div class="slot-container pull-right">
-      <slot></slot>
+      <p class="objective">
+        ${subject.description}
+      </p>
     </div>
   </div>
 </template>

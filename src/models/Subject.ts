@@ -6,4 +6,5 @@ export class Subject extends Person {
   }
 
   address: string;
+  description: string;
 }

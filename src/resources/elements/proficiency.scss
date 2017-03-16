@@ -9,6 +9,7 @@ proficiency {
 
   &.condensed {
     display: inline-block; 
+    vertical-align: top;
     width: (100% / 3);
     &>.align-left {
       text-align: left;

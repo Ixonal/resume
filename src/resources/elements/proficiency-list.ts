@@ -11,7 +11,6 @@ export class ProficiencyList {
   }
 
   alignmentFor(index: number) {
-    console.log(index);
     switch(index % 3) {
       case 0: //first column
         return "left";
