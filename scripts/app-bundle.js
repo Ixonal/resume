@@ -6,8 +6,7 @@ define('app',["require", "exports"], function (require, exports) {
         }
         App.prototype.configureRouter = function (config, router) {
             config.title = "Benjamin McGregor";
-            config.options.pushState = true;
-            config.options.root = "/resume";
+            config.options.pushState = false;
             config.map([
                 { route: "", name: "root", redirect: "resume" },
                 { route: "resume", name: "resume", moduleId: "./resume-components/resume", title: "Resume", nav: true },
