@@ -40,22 +40,10 @@
 
 @mixin linear-gradient($angle, $start-color, $end-color) {
   @include linear-gradient-x($angle, $start-color 0, $end-color 100%);
-  // $oldAngle: $angle - 90;
-  // background: -moz-linear-gradient($oldAngle, $start-color 0%, $end-color 100%);
-  // background: -webkit-linear-gradient($oldAngle, $start-color 0%, $end-color 100%);
-  // background: -o-linear-gradient($oldAngle, $start-color 0%, $end-color 100%);
-  // background: -ms-linear-gradient($oldAngle, $start-color 0%, $end-color 100%);
-  // background: linear-gradient($angle, $start-color 0%, $end-color 100%);
 }
 
 @mixin linear-gradient-3($angle, $start-color, $mid-color, $end-color) {
   @include linear-gradient-x($angle, $start-color 0, $mid-color 50%, $end-color 100%);
-  // $oldAngle: $angle - 90;
-  // background: -moz-linear-gradient($oldAngle, $start-color 0%, $mid-color 50%, $end-color 100%);
-  // background: -webkit-linear-gradient($oldAngle, $start-color 0%, $mid-color 50%, $end-color 100%);
-  // background: -o-linear-gradient($oldAngle, $start-color 0%, $mid-color 50%, $end-color 100%);
-  // background: -ms-linear-gradient($oldAngle, $start-color 0%, $mid-color 50%, $end-color 100%);
-  // background: linear-gradient($angle, $start-color 0%, $mid-color 50%, $end-color 100%);
 }
 
 @mixin linear-gradient-x($angle, $stops...) {

@@ -11,7 +11,7 @@
   @media screen and (max-width: $responsive-cutoff-max) {
     text-shadow: 0 0 2px rgba(0,0,0,.75);
   }
-  
+
   display: block;
   @include border-radius(3px);
   @include heading-gradient();
@@ -23,7 +23,6 @@
     right: 0;
     bottom: 0;
     width: 500px;
-    //@include horizontal-gradient(transparent, $page-background);
     @include linear-gradient-x(145deg, transparent 0, transparent 15%, $page-background 85%, $page-background 100%);
   }
 }
