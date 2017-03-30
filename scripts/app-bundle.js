@@ -548,32 +548,6 @@ define('cv-components/cv',["require", "exports", "aurelia-framework", "../servic
     exports.Cv = Cv;
 });
 
-define('resources/index',["require", "exports"], function (require, exports) {
-    "use strict";
-    Object.defineProperty(exports, "__esModule", { value: true });
-    function configure(config) {
-        config.globalResources([
-            "./elements/common-header",
-            "./elements/education",
-            "./elements/education-list",
-            "./elements/personal-item",
-            "./elements/personal-item-list",
-            "./elements/proficiency",
-            "./elements/proficiency-list",
-            "./elements/reference",
-            "./elements/reference-list",
-            "./elements/work-history",
-            "./elements/work-history-list",
-            "./elements/common-section",
-            "./value-converters/AutoLinkValueConverter",
-            "./value-converters/DateValueConverter",
-            "./value-converters/PhoneValueConverter",
-            "./value-converters/SortByValueConverter"
-        ]);
-    }
-    exports.configure = configure;
-});
-
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -657,6 +631,32 @@ define('resume-components/resume',["require", "exports", "aurelia-framework", ".
     exports.Resume = Resume;
 });
 
+define('resources/index',["require", "exports"], function (require, exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", { value: true });
+    function configure(config) {
+        config.globalResources([
+            "./elements/common-header",
+            "./elements/education",
+            "./elements/education-list",
+            "./elements/personal-item",
+            "./elements/personal-item-list",
+            "./elements/proficiency",
+            "./elements/proficiency-list",
+            "./elements/reference",
+            "./elements/reference-list",
+            "./elements/work-history",
+            "./elements/work-history-list",
+            "./elements/common-section",
+            "./value-converters/AutoLinkValueConverter",
+            "./value-converters/DateValueConverter",
+            "./value-converters/PhoneValueConverter",
+            "./value-converters/SortByValueConverter"
+        ]);
+    }
+    exports.configure = configure;
+});
+
 define('utility/index',["require", "exports"], function (require, exports) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
@@ -679,6 +679,83 @@ define('utility/index',["require", "exports"], function (require, exports) {
         });
     }
     exports.sortBy = sortBy;
+});
+
+define('resources/value-converters/AutoLinkValueConverter',["require", "exports"], function (require, exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", { value: true });
+    var linkRecognitionReg = /\[(http[^\]]+)\]/gim;
+    var AutoLinkValueConverter = (function () {
+        function AutoLinkValueConverter() {
+        }
+        AutoLinkValueConverter.prototype.toView = function (value) {
+            return value.replace(linkRecognitionReg, "<a href=\"$1\" target=\"_blank\">$1</a>");
+        };
+        return AutoLinkValueConverter;
+    }());
+    exports.AutoLinkValueConverter = AutoLinkValueConverter;
+});
+
+define('resources/value-converters/DateValueConverter',["require", "exports", "moment"], function (require, exports, moment) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", { value: true });
+    var DateValueConverter = (function () {
+        function DateValueConverter() {
+        }
+        DateValueConverter.prototype.toView = function (value, format) {
+            if (!value)
+                return "Present";
+            if (value instanceof Date)
+                value = moment(value);
+            return value.format(format);
+        };
+        return DateValueConverter;
+    }());
+    exports.DateValueConverter = DateValueConverter;
+});
+
+define('resources/value-converters/PhoneValueConverter',["require", "exports"], function (require, exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", { value: true });
+    var PhoneValueConverter = (function () {
+        function PhoneValueConverter() {
+        }
+        PhoneValueConverter.prototype.toView = function (value) {
+            value = "" + value;
+            var length = value.length;
+            switch (length) {
+                case 12:
+                case 11:
+                    return value.substring(0, length - 10) + " (" + value.substring(length - 10, length - 7) + ") " + value.substring(length - 7, length - 4) + "-" + value.substring(length - 4);
+                case 10:
+                case 9:
+                case 8:
+                    return "(" + value.substring(0, length - 7) + ") " + value.substring(length - 7, length - 4) + "-" + value.substring(length - 4);
+                case 7:
+                case 6:
+                case 5:
+                    return value.substring(0, length - 4) + "-" + value.substring(length - 4);
+                default:
+                    return value;
+            }
+        };
+        return PhoneValueConverter;
+    }());
+    exports.PhoneValueConverter = PhoneValueConverter;
+});
+
+define('resources/value-converters/SortByValueConverter',["require", "exports", "../../utility/index"], function (require, exports, index_1) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", { value: true });
+    var SortByValueConverter = (function () {
+        function SortByValueConverter() {
+        }
+        SortByValueConverter.prototype.toView = function (value, sortProp, direction) {
+            return index_1.sortBy(value, sortProp, direction === "asc");
+        };
+        return SortByValueConverter;
+    }());
+    exports.SortByValueConverter = SortByValueConverter;
 });
 
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -1055,83 +1132,6 @@ define('resources/elements/work-history',["require", "exports", "aurelia-framewo
         __metadata("design:type", index_1.Business)
     ], WorkHistory.prototype, "business", void 0);
     exports.WorkHistory = WorkHistory;
-});
-
-define('resources/value-converters/AutoLinkValueConverter',["require", "exports"], function (require, exports) {
-    "use strict";
-    Object.defineProperty(exports, "__esModule", { value: true });
-    var linkRecognitionReg = /\[(http[^\]]+)\]/gim;
-    var AutoLinkValueConverter = (function () {
-        function AutoLinkValueConverter() {
-        }
-        AutoLinkValueConverter.prototype.toView = function (value) {
-            return value.replace(linkRecognitionReg, "<a href=\"$1\" target=\"_blank\">$1</a>");
-        };
-        return AutoLinkValueConverter;
-    }());
-    exports.AutoLinkValueConverter = AutoLinkValueConverter;
-});
-
-define('resources/value-converters/DateValueConverter',["require", "exports", "moment"], function (require, exports, moment) {
-    "use strict";
-    Object.defineProperty(exports, "__esModule", { value: true });
-    var DateValueConverter = (function () {
-        function DateValueConverter() {
-        }
-        DateValueConverter.prototype.toView = function (value, format) {
-            if (!value)
-                return "Present";
-            if (value instanceof Date)
-                value = moment(value);
-            return value.format(format);
-        };
-        return DateValueConverter;
-    }());
-    exports.DateValueConverter = DateValueConverter;
-});
-
-define('resources/value-converters/PhoneValueConverter',["require", "exports"], function (require, exports) {
-    "use strict";
-    Object.defineProperty(exports, "__esModule", { value: true });
-    var PhoneValueConverter = (function () {
-        function PhoneValueConverter() {
-        }
-        PhoneValueConverter.prototype.toView = function (value) {
-            value = "" + value;
-            var length = value.length;
-            switch (length) {
-                case 12:
-                case 11:
-                    return value.substring(0, length - 10) + " (" + value.substring(length - 10, length - 7) + ") " + value.substring(length - 7, length - 4) + "-" + value.substring(length - 4);
-                case 10:
-                case 9:
-                case 8:
-                    return "(" + value.substring(0, length - 7) + ") " + value.substring(length - 7, length - 4) + "-" + value.substring(length - 4);
-                case 7:
-                case 6:
-                case 5:
-                    return value.substring(0, length - 4) + "-" + value.substring(length - 4);
-                default:
-                    return value;
-            }
-        };
-        return PhoneValueConverter;
-    }());
-    exports.PhoneValueConverter = PhoneValueConverter;
-});
-
-define('resources/value-converters/SortByValueConverter',["require", "exports", "../../utility/index"], function (require, exports, index_1) {
-    "use strict";
-    Object.defineProperty(exports, "__esModule", { value: true });
-    var SortByValueConverter = (function () {
-        function SortByValueConverter() {
-        }
-        SortByValueConverter.prototype.toView = function (value, sortProp, direction) {
-            return index_1.sortBy(value, sortProp, direction === "asc");
-        };
-        return SortByValueConverter;
-    }());
-    exports.SortByValueConverter = SortByValueConverter;
 });
 
 define('rxjs/Subject',['require','exports','module','./Observable','./Subscriber','./Subscription','./util/ObjectUnsubscribedError','./SubjectSubscription','./symbol/rxSubscriber'],function (require, exports, module) {"use strict";
@@ -18898,34 +18898,34 @@ exports.AnimationFrameScheduler = AnimationFrameScheduler;
 
 define('text!app.html', ['module'], function(module) { module.exports = "<template><require from=\"./app.css\"></require><router-view></router-view></template>"; });
 define('text!cv-components/cv-body.html', ['module'], function(module) { module.exports = "<template><education-list education.bind=\"education\"></education-list><work-history-list work-history.bind=\"workHistory\" businesses.bind=\"businesses\"></work-history-list><proficiency-list proficiencies.bind=\"proficiencies\" condensed=\"false\"></proficiency-list><personal-item-list personal-items.bind=\"personalItems\" if.bind=\"personalItems.length > 0\"></personal-item-list><reference-list references.bind=\"references\" businesses.bind=\"businesses\"></reference-list></template>"; });
-define('text!cv-components/cv.html', ['module'], function(module) { module.exports = "<template><require from=\"./cv-body\"></require><common-header subject.bind=\"subject\"><a class=\"no-print\" route-href=\"route: resume\" title=\"Click to view as Resume\">Resume View</a></common-header><cv-body education.bind=\"education\" work-history.bind=\"workHistory\" references.bind=\"references\" businesses.bind=\"businesses\" personal-items.bind=\"personalItems\" proficiencies.bind=\"proficiencies\"></cv-body></template>"; });
-define('text!resume-components/resume-body.html', ['module'], function(module) { module.exports = "<template><education-list education.bind=\"education\"></education-list><work-history-list work-history.bind=\"workHistory\" businesses.bind=\"businesses\"></work-history-list><proficiency-list proficiencies.bind=\"proficiencies\"></proficiency-list><personal-item-list personal-items.bind=\"personalItems\" if.bind=\"personalItems.length > 0\"></personal-item-list></template>"; });
-define('text!resume-components/resume.html', ['module'], function(module) { module.exports = "<template><require from=\"./resume-body\"></require><common-header subject.bind=\"subject\"><a class=\"no-print\" route-href=\"route: cv\" title=\"Click to view as CV\">CV View</a></common-header><resume-body education.bind=\"education\" work-history.bind=\"workHistory\" references.bind=\"references\" businesses.bind=\"businesses\" personal-items.bind=\"personalItems\" proficiencies.bind=\"proficiencies\"></resume-body></template>"; });
 define('text!app.css', ['module'], function(module) { module.exports = ".h1, h1 {\n  font-size: 37.5px;\n  margin: 0;\n  font-weight: bold;\n  font-style: normal; }\n\n.h2, h2 {\n  font-size: 26.25px;\n  margin: 0;\n  font-weight: bold;\n  font-style: normal; }\n\n.h3, h3 {\n  font-size: 21px;\n  margin: 0;\n  font-weight: bold;\n  font-style: normal; }\n\n.h4, h4 {\n  font-size: 17.25px;\n  margin: 0;\n  font-weight: bold;\n  font-style: normal; }\n\n.h5, h5 {\n  font-size: 15px;\n  margin: 0;\n  font-weight: normal;\n  font-style: italic; }\n\nhtml {\n  -ms-text-size-adjust: 100%;\n  -webkit-text-size-adjust: 100%;\n  font-family: Helvetica; }\n\nbody {\n  font-size: 15px;\n  color: #1a1a1a;\n  cursor: default;\n  -webkit-print-color-adjust: exact;\n  color-adjust: exact; }\n\na {\n  color: #1a1a1a;\n  text-decoration: none;\n  display: inline-block; }\n  a:hover {\n    text-decoration: underline; }\n\n@media print {\n  .no-print {\n    display: none; } }\n\n.pull-left {\n  float: left !important; }\n\n.pull-right {\n  float: right !important; }\n\n.clearfix:before, .clearfix:after {\n  content: \" \";\n  display: table; }\n\n.clearfix:after {\n  clear: both; }\n\nhr {\n  margin: 0;\n  height: 0;\n  border: 0 hidden transparent;\n  border-bottom: 1px solid #666666; }\n\nhtml {\n  display: block; }\n\nbody {\n  padding: 0;\n  margin-top: 8.4px;\n  position: relative;\n  display: block;\n  background: white; }\n  @media print {\n    body {\n      width: 9.5in; } }\n  body > router-view {\n    display: block;\n    position: relative; }\n    @media screen and (min-width: 1050px) {\n      body > router-view {\n        width: 1000px;\n        left: 50%;\n        margin-left: -500px; } }\n    @media screen and (max-width: 1049px) {\n      body > router-view {\n        width: 100%;\n        left: 0;\n        margin: 0; } }\n"; });
-define('text!resources/elements/common-header.html', ['module'], function(module) { module.exports = "<template><require from=\"./common-header.css\"></require><h1><span>${subject.fullName}</span></h1><div class=\"clearfix\"><div class=\"slot-container pull-right\"><slot></slot></div><div class=\"pull-left\"><h4>${subject.address}<br>${subject.city}, ${subject.state}<br><a href=\"tel:${subject.phone}\" title=\"Click to Call ${subject.fullName}\">${subject.phone | phone}</a><br><a href=\"mailto:${subject.email}\" title=\"Click to Email ${subject.fullName}\">${subject.email}</a></h4><p class=\"objective\">${subject.description}</p></div></div></template>"; });
+define('text!cv-components/cv.html', ['module'], function(module) { module.exports = "<template><require from=\"./cv-body\"></require><common-header subject.bind=\"subject\"><a class=\"no-print\" route-href=\"route: resume\" title=\"Click to view as Resume\">Resume View</a></common-header><cv-body education.bind=\"education\" work-history.bind=\"workHistory\" references.bind=\"references\" businesses.bind=\"businesses\" personal-items.bind=\"personalItems\" proficiencies.bind=\"proficiencies\"></cv-body></template>"; });
 define('text!styles/common.css', ['module'], function(module) { module.exports = ""; });
+define('text!resume-components/resume-body.html', ['module'], function(module) { module.exports = "<template><education-list education.bind=\"education\"></education-list><work-history-list work-history.bind=\"workHistory\" businesses.bind=\"businesses\"></work-history-list><proficiency-list proficiencies.bind=\"proficiencies\"></proficiency-list><personal-item-list personal-items.bind=\"personalItems\" if.bind=\"personalItems.length > 0\"></personal-item-list></template>"; });
 define('text!styles/core.css', ['module'], function(module) { module.exports = ".h1, h1 {\n  font-size: 37.5px;\n  margin: 0;\n  font-weight: bold;\n  font-style: normal; }\n\n.h2, h2 {\n  font-size: 26.25px;\n  margin: 0;\n  font-weight: bold;\n  font-style: normal; }\n\n.h3, h3 {\n  font-size: 21px;\n  margin: 0;\n  font-weight: bold;\n  font-style: normal; }\n\n.h4, h4 {\n  font-size: 17.25px;\n  margin: 0;\n  font-weight: bold;\n  font-style: normal; }\n\n.h5, h5 {\n  font-size: 15px;\n  margin: 0;\n  font-weight: normal;\n  font-style: italic; }\n\nhtml {\n  -ms-text-size-adjust: 100%;\n  -webkit-text-size-adjust: 100%;\n  font-family: Helvetica; }\n\nbody {\n  font-size: 15px;\n  color: #1a1a1a;\n  cursor: default;\n  -webkit-print-color-adjust: exact;\n  color-adjust: exact; }\n\na {\n  color: #1a1a1a;\n  text-decoration: none;\n  display: inline-block; }\n  a:hover {\n    text-decoration: underline; }\n\n@media print {\n  .no-print {\n    display: none; } }\n\n.pull-left {\n  float: left !important; }\n\n.pull-right {\n  float: right !important; }\n\n.clearfix:before, .clearfix:after {\n  content: \" \";\n  display: table; }\n\n.clearfix:after {\n  clear: both; }\n\nhr {\n  margin: 0;\n  height: 0;\n  border: 0 hidden transparent;\n  border-bottom: 1px solid #666666; }\n"; });
-define('text!resources/elements/common-section.html', ['module'], function(module) { module.exports = "<template><require from=\"./common-section.css\"></require><fieldset><legend if.bind=\"heading\"><h2>${heading}</h2></legend><slot></slot></fieldset></template>"; });
 define('text!styles/gradients.css', ['module'], function(module) { module.exports = ""; });
+define('text!resume-components/resume.html', ['module'], function(module) { module.exports = "<template><require from=\"./resume-body\"></require><common-header subject.bind=\"subject\"><a class=\"no-print\" route-href=\"route: cv\" title=\"Click to view as CV\">CV View</a></common-header><resume-body education.bind=\"education\" work-history.bind=\"workHistory\" references.bind=\"references\" businesses.bind=\"businesses\" personal-items.bind=\"personalItems\" proficiencies.bind=\"proficiencies\"></resume-body></template>"; });
 define('text!styles/headers.css', ['module'], function(module) { module.exports = ".h1, h1 {\n  font-size: 37.5px;\n  margin: 0;\n  font-weight: bold;\n  font-style: normal; }\n\n.h2, h2 {\n  font-size: 26.25px;\n  margin: 0;\n  font-weight: bold;\n  font-style: normal; }\n\n.h3, h3 {\n  font-size: 21px;\n  margin: 0;\n  font-weight: bold;\n  font-style: normal; }\n\n.h4, h4 {\n  font-size: 17.25px;\n  margin: 0;\n  font-weight: bold;\n  font-style: normal; }\n\n.h5, h5 {\n  font-size: 15px;\n  margin: 0;\n  font-weight: normal;\n  font-style: italic; }\n"; });
-define('text!resources/elements/education-list.html', ['module'], function(module) { module.exports = "<template><require from=\"./education-list.css\"></require><common-section heading=\"Education\"><div repeat.for=\"edu of education\"><education education.bind=\"edu\"></education></div></common-section></template>"; });
+define('text!resources/elements/common-header.html', ['module'], function(module) { module.exports = "<template><require from=\"./common-header.css\"></require><h1><span>${subject.fullName}</span></h1><div class=\"clearfix\"><div class=\"slot-container pull-right\"><slot></slot></div><div class=\"pull-left\"><h4>${subject.address}<br>${subject.city}, ${subject.state}<br><a href=\"tel:${subject.phone}\" title=\"Click to Call ${subject.fullName}\">${subject.phone | phone}</a><br><a href=\"mailto:${subject.email}\" title=\"Click to Email ${subject.fullName}\">${subject.email}</a></h4><p class=\"objective\">${subject.description}</p></div></div></template>"; });
+define('text!resources/elements/common-section.html', ['module'], function(module) { module.exports = "<template><require from=\"./common-section.css\"></require><fieldset><legend if.bind=\"heading\"><h2>${heading}</h2></legend><slot></slot></fieldset></template>"; });
 define('text!styles/mixins.css', ['module'], function(module) { module.exports = ""; });
 define('text!styles/variables.css', ['module'], function(module) { module.exports = ""; });
+define('text!resources/elements/education-list.html', ['module'], function(module) { module.exports = "<template><require from=\"./education-list.css\"></require><common-section heading=\"Education\"><div repeat.for=\"edu of education\"><education education.bind=\"edu\"></education></div></common-section></template>"; });
 define('text!resources/elements/education.html', ['module'], function(module) { module.exports = "<template><require from=\"./education.css\"></require><h4>${education.institutionName} - ${education.city}, ${education.state}</h4><h5>${education.degreeType}'s' in ${education.degreeFocus}, Graduated ${education.graduationDate | date: 'MM/YYYY'}</h5></template>"; });
+define('text!resources/elements/common-header.css', ['module'], function(module) { module.exports = "common-header {\n  display: block;\n  position: relative; }\n  common-header > h1 {\n    position: relative;\n    color: white;\n    display: block;\n    -webkit-border-radius: 3px;\n    -moz-border-radius: 3px;\n    -ms-border-radius: 3px;\n    border-radius: 3px;\n    background-image: -moz-linear-gradient(325deg, white 0, white 50px, transparent 250px, transparent 100%), -moz-linear-gradient(180deg, #4f6fa3 0, #364c6f 100%);\n    background-image: -webkit-linear-gradient(325deg, white 0, white 50px, transparent 250px, transparent 100%), -webkit-linear-gradient(180deg, #4f6fa3 0, #364c6f 100%);\n    background-image: -o-linear-gradient(325deg, white 0, white 50px, transparent 250px, transparent 100%), -o-linear-gradient(180deg, #4f6fa3 0, #364c6f 100%);\n    background-image: ms-linear-gradient(325deg, white 0, white 50px, transparent 250px, transparent 100%), ms-linear-gradient(180deg, #4f6fa3 0, #364c6f 100%);\n    background-image: linear-gradient(325deg, white 0, white 50px, transparent 250px, transparent 100%), linear-gradient(180deg, #4f6fa3 0, #364c6f 100%);\n    border-right: none;\n    padding: 6.9px; }\n    @media screen and (max-width: 1049px) {\n      common-header > h1 {\n        text-shadow: 0 0 2px rgba(0, 0, 0, 0.75); } }\n    common-header > h1 > * {\n      position: relative; }\n  common-header > *:not(h1) {\n    position: relative;\n    padding: 6px; }\n  common-header > div > .slot-container {\n    margin-top: -45px; }\n    common-header > div > .slot-container > a {\n      font-weight: bold; }\n  common-header .objective {\n    text-align: justify; }\n"; });
 define('text!resources/elements/personal-item-list.html', ['module'], function(module) { module.exports = "<template><require from=\"./personal-item-list.css\"></require><common-section heading=\"Personal\"><personal-item repeat.for=\"personalItem of personalItems\" personal-item.bind=\"personalItem\"></personal-item></common-section></template>"; });
+define('text!resources/elements/common-section.css', ['module'], function(module) { module.exports = "common-section {\n  display: block;\n  overflow: hidden;\n  margin-top: 8.4px;\n  margin-bottom: 8.4px; }\n  common-section > fieldset {\n    position: relative;\n    border: none;\n    padding: 0;\n    margin: 0; }\n    common-section > fieldset > legend {\n      position: relative;\n      width: 100%;\n      color: white;\n      display: block;\n      -webkit-border-radius: 3px;\n      -moz-border-radius: 3px;\n      -ms-border-radius: 3px;\n      border-radius: 3px;\n      background-image: -moz-linear-gradient(325deg, white 0, white 50px, transparent 250px, transparent 100%), -moz-linear-gradient(180deg, #4f6fa3 0, #364c6f 100%);\n      background-image: -webkit-linear-gradient(325deg, white 0, white 50px, transparent 250px, transparent 100%), -webkit-linear-gradient(180deg, #4f6fa3 0, #364c6f 100%);\n      background-image: -o-linear-gradient(325deg, white 0, white 50px, transparent 250px, transparent 100%), -o-linear-gradient(180deg, #4f6fa3 0, #364c6f 100%);\n      background-image: ms-linear-gradient(325deg, white 0, white 50px, transparent 250px, transparent 100%), ms-linear-gradient(180deg, #4f6fa3 0, #364c6f 100%);\n      background-image: linear-gradient(325deg, white 0, white 50px, transparent 250px, transparent 100%), linear-gradient(180deg, #4f6fa3 0, #364c6f 100%);\n      border-right: none; }\n      @media screen and (max-width: 1049px) {\n        common-section > fieldset > legend {\n          text-shadow: 0 0 2px rgba(0, 0, 0, 0.75); } }\n      common-section > fieldset > legend > h2 {\n        padding: 6px;\n        width: 100%; }\n    common-section > fieldset > *:not(legend) {\n      padding: 6.9px; }\n"; });
 define('text!resources/elements/personal-item.html', ['module'], function(module) { module.exports = "<template><require from=\"./personal-item.css\"></require><h5>${personalItem.text}</h5></template>"; });
+define('text!resources/elements/education-list.css', ['module'], function(module) { module.exports = ""; });
 define('text!resources/elements/proficiency-list.html', ['module'], function(module) { module.exports = "<template><require from=\"./proficiency-list.css\"></require><common-section heading=\"Proficiencies\"><div><h4>Proficient in several modern programming techniques and technologies</h4><hr><proficiency repeat.for=\"proficiency of proficiencies\" proficiency.bind=\"proficiency\" align.bind=\"alignmentFor($index)\" condensed.bind=\"condensed\"></proficiency></div></common-section></template>"; });
 define('text!resources/elements/proficiency.html', ['module'], function(module) { module.exports = "<template class=\"${condensed ? 'condensed' : ''}\"><require from=\"./proficiency.css\"></require><p class=\"proficiency-container align-${align}\" title=\"${proficiency.description}\"><span class=\"h5\">${proficiency.name}</span> <span if.bind=\"!condensed\">- ${proficiency.level}: ${proficiency.description}</span></p></template>"; });
+define('text!resources/elements/education.css', ['module'], function(module) { module.exports = "education {\n  display: block; }\n"; });
 define('text!resources/elements/reference-list.html', ['module'], function(module) { module.exports = "<template><require from=\"./reference-list.css\"></require><common-section heading=\"References\"><reference repeat.for=\"reference of references\" reference.bind=\"reference\" business.bind=\"businessFor(reference)\"></reference></common-section></template>"; });
+define('text!resources/elements/personal-item-list.css', ['module'], function(module) { module.exports = ""; });
 define('text!resources/elements/reference.html', ['module'], function(module) { module.exports = "<template><require from=\"./reference.css\"></require><h4>${reference.fullName}</h4><hr><p class=\"reference-info\">${business.name}<br>${business.city}, ${business.state}<br><a href=\"tel:${reference.phone}\" title=\"Click to Call ${reference.fullName}\">${reference.phone | phone}</a><br><a href=\"mailto:${reference.email}\" title=\"Click to Email ${reference.fullName}\">${reference.email}</a></p></template>"; });
+define('text!resources/elements/personal-item.css', ['module'], function(module) { module.exports = "personal-item {\n  display: block; }\n"; });
 define('text!resources/elements/work-history-list.html', ['module'], function(module) { module.exports = "<template><require from=\"./work-history-list.css\"></require><common-section heading=\"Work History\"><work-history repeat.for=\"history of workHistory | sortBy: 'start':'desc'\" work-history.bind=\"history\" business.bind=\"businessFor(history)\"></work-history></common-section></template>"; });
 define('text!resources/elements/work-history.html', ['module'], function(module) { module.exports = "<template><require from=\"./work-history.css\"></require><h4 class=\"description\">${business.name} - ${workHistory.title}</h4><h5 class=\"clearfix\" if.bind=\"workHistory.start\"><span class=\"period pull-left\">${workHistory.start | date:'MM/YYYY'} - ${workHistory.end | date:'MM/YYYY'} </span><span class=\"location pull-right\">${business.city}<span if.bind=\"business.state\">, ${business.state}</span></span></h5><hr><p class=\"long-description\" innerhtml.bind=\"workHistory.description | autoLink\"></p></template>"; });
-define('text!resources/elements/common-header.css', ['module'], function(module) { module.exports = "common-header {\n  display: block;\n  position: relative; }\n  common-header > h1 {\n    position: relative;\n    color: white;\n    display: block;\n    -webkit-border-radius: 3px;\n    -moz-border-radius: 3px;\n    -ms-border-radius: 3px;\n    border-radius: 3px;\n    background-image: -moz-linear-gradient(325deg, white 0, white 50px, transparent 250px, transparent 100%), -moz-linear-gradient(180deg, #4f6fa3 0, #364c6f 100%);\n    background-image: -webkit-linear-gradient(325deg, white 0, white 50px, transparent 250px, transparent 100%), -webkit-linear-gradient(180deg, #4f6fa3 0, #364c6f 100%);\n    background-image: -o-linear-gradient(325deg, white 0, white 50px, transparent 250px, transparent 100%), -o-linear-gradient(180deg, #4f6fa3 0, #364c6f 100%);\n    background-image: ms-linear-gradient(325deg, white 0, white 50px, transparent 250px, transparent 100%), ms-linear-gradient(180deg, #4f6fa3 0, #364c6f 100%);\n    background-image: linear-gradient(325deg, white 0, white 50px, transparent 250px, transparent 100%), linear-gradient(180deg, #4f6fa3 0, #364c6f 100%);\n    border-right: none;\n    padding: 6.9px; }\n    @media screen and (max-width: 1049px) {\n      common-header > h1 {\n        text-shadow: 0 0 2px rgba(0, 0, 0, 0.75); } }\n    common-header > h1 > * {\n      position: relative; }\n  common-header > *:not(h1) {\n    position: relative;\n    padding: 6px; }\n  common-header > div > .slot-container {\n    margin-top: -45px; }\n    common-header > div > .slot-container > a {\n      font-weight: bold; }\n  common-header .objective {\n    text-align: justify; }\n"; });
-define('text!resources/elements/common-section.css', ['module'], function(module) { module.exports = "common-section {\n  display: block;\n  overflow: hidden;\n  margin-top: 8.4px;\n  margin-bottom: 8.4px; }\n  common-section > fieldset {\n    position: relative;\n    border: none;\n    padding: 0;\n    margin: 0; }\n    common-section > fieldset > legend {\n      position: relative;\n      width: 100%;\n      color: white;\n      display: block;\n      -webkit-border-radius: 3px;\n      -moz-border-radius: 3px;\n      -ms-border-radius: 3px;\n      border-radius: 3px;\n      background-image: -moz-linear-gradient(325deg, white 0, white 50px, transparent 250px, transparent 100%), -moz-linear-gradient(180deg, #4f6fa3 0, #364c6f 100%);\n      background-image: -webkit-linear-gradient(325deg, white 0, white 50px, transparent 250px, transparent 100%), -webkit-linear-gradient(180deg, #4f6fa3 0, #364c6f 100%);\n      background-image: -o-linear-gradient(325deg, white 0, white 50px, transparent 250px, transparent 100%), -o-linear-gradient(180deg, #4f6fa3 0, #364c6f 100%);\n      background-image: ms-linear-gradient(325deg, white 0, white 50px, transparent 250px, transparent 100%), ms-linear-gradient(180deg, #4f6fa3 0, #364c6f 100%);\n      background-image: linear-gradient(325deg, white 0, white 50px, transparent 250px, transparent 100%), linear-gradient(180deg, #4f6fa3 0, #364c6f 100%);\n      border-right: none; }\n      @media screen and (max-width: 1049px) {\n        common-section > fieldset > legend {\n          text-shadow: 0 0 2px rgba(0, 0, 0, 0.75); } }\n      common-section > fieldset > legend > h2 {\n        padding: 6px;\n        width: 100%; }\n    common-section > fieldset > *:not(legend) {\n      padding: 6.9px; }\n"; });
-define('text!resources/elements/education-list.css', ['module'], function(module) { module.exports = ""; });
-define('text!resources/elements/education.css', ['module'], function(module) { module.exports = "education {\n  display: block; }\n"; });
-define('text!resources/elements/personal-item-list.css', ['module'], function(module) { module.exports = ""; });
-define('text!resources/elements/personal-item.css', ['module'], function(module) { module.exports = "personal-item {\n  display: block; }\n"; });
 define('text!resources/elements/proficiency-list.css', ['module'], function(module) { module.exports = "proficiency-list {\n  display: block; }\n"; });
 define('text!resources/elements/proficiency.css', ['module'], function(module) { module.exports = "proficiency {\n  display: block; }\n  proficiency .proficiency-container {\n    text-align: justify; }\n  proficiency.condensed {\n    display: inline-block;\n    vertical-align: top;\n    width: 33.33333%; }\n    proficiency.condensed > .align-left {\n      text-align: left; }\n    proficiency.condensed > .align-center {\n      text-align: center; }\n    proficiency.condensed > .align-right {\n      text-align: right; }\n    proficiency.condensed > p {\n      margin: 6.9px; }\n"; });
 define('text!resources/elements/reference-list.css', ['module'], function(module) { module.exports = ""; });
