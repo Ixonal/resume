@@ -5,6 +5,8 @@
 html {
   -ms-text-size-adjust: 100%;
   -webkit-text-size-adjust: 100%;
+  
+  font-family: $font-family-base;
 }
 
 body {
@@ -14,6 +16,7 @@ body {
 
   //this should get backgrounds showing when printing
   -webkit-print-color-adjust: exact;
+  color-adjust: exact;
 }
 
 a {

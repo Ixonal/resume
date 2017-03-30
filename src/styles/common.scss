@@ -1,9 +1,13 @@
 
 @import "./variables";
 @import "./mixins";
+@import "./gradients";
 
 @mixin heading-gradient() {
-  @include vertical-gradient($heading-bg-primary, $heading-bg-secondary);
+  @include background-image-x(
+    linear-gradient-x(325deg, $page-background 0, $page-background 50px, transparent 250px, transparent 100%),
+    linear-gradient-x(180deg, $heading-bg-primary 0, $heading-bg-secondary 100%)
+  );
 }
 
 @mixin heading-styles() {
@@ -16,13 +20,13 @@
   @include border-radius(3px);
   @include heading-gradient();
   border-right: none;
-  &:before {
-    content: " ";
-    position: absolute;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    width: 500px;
-    @include linear-gradient-x(145deg, transparent 0, transparent 15%, $page-background 85%, $page-background 100%);
-  }
+  // &:before {
+  //   content: " ";
+  //   position: absolute;
+  //   top: 0;
+  //   right: 0;
+  //   bottom: 0;
+  //   width: 500px;
+  //   @include linear-gradient-x(145deg, transparent 0, transparent 15%, $page-background 85%, $page-background 100%);
+  // }
 }

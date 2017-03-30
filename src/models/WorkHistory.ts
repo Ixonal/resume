@@ -16,4 +16,5 @@ export class WorkHistory extends DataWrapper {
   end: string | moment.Moment;
   title: string;
   type: string;
+  isActive: boolean;
 }

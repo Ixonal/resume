@@ -10,6 +10,5 @@ export class ProficiencyVm {
 
   attached() {
     if(typeof(this.condensed) === "string") this.condensed = (<string>this.condensed).toLowerCase() === "true";
-    console.log(this.condensed);
   }
 }

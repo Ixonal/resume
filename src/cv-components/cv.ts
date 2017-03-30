@@ -30,7 +30,7 @@ export class Cv {
       this.proficiencies = m.proficiencies;
       this.references = m.references;
       this.subject = m.subject;
-      this.workHistory = m.workHistory;
+      this.workHistory = m.workHistory.filter(m => m.isActive);
     });
 
     //returning this stream will cause this component to wait until 

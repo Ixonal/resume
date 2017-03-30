@@ -15,6 +15,7 @@ export function configure(config: FrameworkConfiguration) {
     "./elements/work-history-list",
     "./elements/common-section",
 
+    "./value-converters/AutoLinkValueConverter",
     "./value-converters/DateValueConverter",
     "./value-converters/PhoneValueConverter",
     "./value-converters/SortByValueConverter"
