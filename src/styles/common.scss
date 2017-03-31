@@ -19,14 +19,5 @@
   display: block;
   @include border-radius(3px);
   @include heading-gradient();
-  border-right: none;
-  // &:before {
-  //   content: " ";
-  //   position: absolute;
-  //   top: 0;
-  //   right: 0;
-  //   bottom: 0;
-  //   width: 500px;
-  //   @include linear-gradient-x(145deg, transparent 0, transparent 15%, $page-background 85%, $page-background 100%);
-  // }
+  border: none !important;
 }
