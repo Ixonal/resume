@@ -1,6 +1,7 @@
 //for things that need to be included only once
 @import "./common";
 @import "./headers";
+@import "./spinner";
 
 html {
   -ms-text-size-adjust: 100%;
@@ -52,4 +53,16 @@ hr {
   height: 0;
   border: 0 hidden transparent;
   border-bottom: 1px solid lighten($font-color-base, 30%);
+}
+
+.spinner {
+  position: fixed;
+  $spinner-size: 200px;
+  top: 50%;
+  left: 50%;
+  margin-left: $spinner-size / -2;
+  margin-top: $spinner-size / -2;
+
+  //@include spinner(1s, $spinner-size, linear, 10, 40px, lighten(black, 15%), rgba(100,100,100,.75));
+  @include rotating-spinner(-360deg, 50s, linear, 1s, $spinner-size, linear, 10, 40px, lighten(black, 15%), rgba(100,100,100,.75));
 }

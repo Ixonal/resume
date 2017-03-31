@@ -5,6 +5,8 @@
   .h#{$c},h#{$c} {
     font-size: $font-size-base * $scale-factor;
     margin: 0;
+    box-shadow: none;
+    border: 0px hidden transparent;
     @if $c > 4 {
       font-weight: normal;
       font-style: italic;

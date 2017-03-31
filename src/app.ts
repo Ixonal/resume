@@ -1,8 +1,10 @@
 import { RouterConfiguration, Router } from "aurelia-router";
 
 export class App {
+  router: Router;
 
   configureRouter(config: RouterConfiguration, router: Router) {
+    this.router = router;
     config.title = "Benjamin McGregor";
     config.options.pushState = false;
     //config.options.root = "/resume";
