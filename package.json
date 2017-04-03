@@ -13,7 +13,7 @@
     "build:dev": "au build --env dev",
     "build:stage": "au build --env stage",
     "build:prod": "au build --env prod",
-    "deploy": "cpx ./index.html ./dist && cpx ./scripts/* ./dist/scripts && firebase deploy",
+    "build:deploy": "cpx ./index.html ./dist && cpx ./scripts/* ./dist/scripts",
     "test": "au test"
   },
   "dependencies": {
@@ -39,7 +39,6 @@
     "connect-history-api-fallback": "^1.2.0",
     "cpx": "^1.5.0",
     "event-stream": "^3.3.3",
-    "firebase-tools": "^3.5.0",
     "gulp": "github:gulpjs/gulp#4.0",
     "gulp-changed-in-place": "^2.0.3",
     "gulp-htmlmin": "^3.0.0",
