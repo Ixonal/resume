@@ -13,5 +13,5 @@ script:
   - npm run build:dev
   - npm test
 
-after_succss:
+after_success:
   - npm run deploy --email ${FIREBASE_BENSRESUME_USERNAME} --password ${FIREBASE_BENSRESUME_PASSWORD}
