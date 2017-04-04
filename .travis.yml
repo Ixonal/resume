@@ -16,4 +16,4 @@ script:
 
 after_success:
   - npm run build:deploy
-  - firebase deploy --email ${FIREBASE_BENSRESUME_USERNAME} --password ${FIREBASE_BENSRESUME_PASSWORD}
+  - firebase deploy --token $FIREBASE_TOKEN
