@@ -13,11 +13,10 @@
     "build:dev": "au build --env dev",
     "build:stage": "au build --env stage",
     "build:prod": "au build --env prod",
-    "build:deploy": "npm run build:deploy:clean && npm run build:deploy:functions && npm run build:deploy:index && npm run build:deploy:scripts",
+    "build:deploy": "npm run build:deploy:clean && npm run build:deploy:index && npm run build:deploy:scripts",
     "build:deploy:clean": "del-cli dist",
-    "build:deploy:functions": "cd functions && npm install",
     "build:deploy:index": "cpx \"index.html\" dist",
-    "build:deploy:scripts": "cpx \"scripts/*\" dist/scripts",
+    "build:deploy:scripts": "cpx \"scripts/**/*\" dist/scripts",
     "test": "au test"
   },
   "dependencies": {
