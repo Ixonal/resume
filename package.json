@@ -13,7 +13,10 @@
     "build:dev": "au build --env dev",
     "build:stage": "au build --env stage",
     "build:prod": "au build --env prod",
-    "build:deploy": "cpx index.html dist && cpx scripts/* dist/scripts",
+    "build:deploy": "npm run build:deploy:clean && npm run build:deploy:index && npm run build:deploy:scripts",
+    "build:deploy:clean": "del-cli dist",
+    "build:deploy:index": "cpx index.html dist",
+    "build:deploy:scripts": "cpx scripts/* dist/scripts",
     "test": "au test"
   },
   "dependencies": {
@@ -38,6 +41,7 @@
     "browser-sync": "^2.13.0",
     "connect-history-api-fallback": "^1.2.0",
     "cpx": "^1.5.0",
+    "del-cli": "^0.2.1",
     "event-stream": "^3.3.3",
     "gulp": "github:gulpjs/gulp#4.0",
     "gulp-changed-in-place": "^2.0.3",
