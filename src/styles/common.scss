@@ -8,6 +8,13 @@
     linear-gradient-x(325deg, $page-background 0, $page-background 50px, transparent 250px, transparent 100%),
     linear-gradient-x(180deg, $heading-bg-primary 0, $heading-bg-secondary 100%)
   );
+  @media print {
+    //so apparently background images have the wrong rotation when printed...
+    @include background-image-x(
+      linear-gradient-x(325 - 110deg, $page-background 0, $page-background 50px, transparent 250px, transparent 100%),
+      linear-gradient-x(180deg, $heading-bg-primary 0, $heading-bg-secondary 100%)
+    );
+  }
 }
 
 @mixin heading-styles() {
