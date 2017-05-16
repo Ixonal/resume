@@ -7,7 +7,7 @@
   "stripPrefix": "dist",
   "runtimeCaching": [
     {
-      "urlPattern": "https://bens-resume.firebaseio.com/(.*)",
+      "urlPattern": "(.*)\\.firebaseio\\.com/(.*)",
       "handler": "networkFirst"
     }
   ]
