@@ -1,8 +1,7 @@
 {
   "cacheId": "bens-resume-sw-cache",
   "staticFileGlobs": [
-    "dist/**/*.*",
-    "!dist/service-worker.js"
+    "scripts/**/*.*"
   ],
   "stripPrefix": "dist",
   "runtimeCaching": [

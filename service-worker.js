@@ -37,7 +37,7 @@
 /* eslint-disable indent, no-unused-vars, no-multiple-empty-lines, max-nested-callbacks, space-before-function-paren, quotes, comma-spacing */
 'use strict';
 
-var precacheConfig = [["/icons/bens-resume-icon-144x144.png","6ac644bd01915947aaa03bb2e9bd5057"],["/icons/bens-resume-icon-192x192.png","e506140fe2ebc53ada0244083317c6dc"],["/icons/bens-resume-icon-48x48.png","41dae4cf66e63aed33b017c2a69fc596"],["/icons/bens-resume-icon-72x72.png","90d56909c4a5ca0298bd48568745dead"],["/icons/bens-resume-icon-96x96.png","8795da183fb84274123428b0378df65a"],["/index.html","cbf2d090764864d38bcb7acfacebb8ef"],["/manifest.json","0e963a2011f8fac78e4f61bd85f24abc"],["/scripts/app-bundle.js","213425f6b3f6b880f8d40594312a64cd"],["/scripts/app-bundle.js.map","026d8221e8c4212402a91924508f0913"],["/scripts/vendor-bundle.js","6896857bd1cd74c721cce53e683519b4"]];
+var precacheConfig = [["scripts/app-bundle.js","f18efb8887c60ede626871ea59a35dae"],["scripts/app-bundle.js.map","2c83911c3efef9ab4bbab766199fcfb1"],["scripts/vendor-bundle.js","1e489bf493cc982b4039ca2fa290f58a"]];
 var cacheName = 'sw-precache-v3-bens-resume-sw-cache-' + (self.registration ? self.registration.scope : '');
 
 
@@ -285,7 +285,7 @@ self.addEventListener('fetch', function(event) {
 
 // Runtime cache configuration, using the sw-toolbox library.
 
-toolbox.router.get("https://bens-resume.firebaseio.com/(.*)", toolbox.networkFirst, {});
+toolbox.router.get("(.*)\\.firebaseio\\.com/(.*)", toolbox.networkFirst, {});
 
 
 

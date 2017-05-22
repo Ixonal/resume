@@ -17,6 +17,7 @@ export interface IData {
   workHistory: WorkHistory[];
 }
 
+//todo: make this cache in localStorage for loss of connectivity issues
 export class DataRepository {
 
   private _database: database.Database = database();
