@@ -3,7 +3,7 @@
   "staticFileGlobs": [
     "scripts/**/*.*"
   ],
-  "stripPrefix": "dist",
+  "stripPrefix": "scripts",
   "runtimeCaching": [
     {
       "urlPattern": "(.*)\\.firebaseio\\.com/(.*)",
