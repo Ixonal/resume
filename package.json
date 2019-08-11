@@ -14,13 +14,10 @@
     "build:stage": "au build --env stage && npm run build:sw",
     "build:prod": "au build --env prod && npm run build:sw",
     "build:sw": "sw-precache --config=swconfig.json",
-    "build:deploy": "npm run build:deploy:clean && npm run build:deploy:index && npm run build:deploy:icons && npm run build:deploy:manifest && npm run build:deploy:sw && npm run build:deploy:scripts",
-    "build:deploy:clean": "del-cli dist",
-    "build:deploy:index": "cpx \"index.html\" dist",
+    "build:deploy": "npm run build:deploy:icons && npm run build:deploy:manifest && npm run build:deploy:sw",
     "build:deploy:icons": "cpx \"images/**/*.*\" dist/images",
     "build:deploy:manifest": "cpx \"manifest.json\" dist",
     "build:deploy:sw": "cpx \"service-worker.js\" dist",
-    "build:deploy:scripts": "cpx \"scripts/**/*\" dist/scripts",
     "test": "au test"
   },
   "dependencies": {
