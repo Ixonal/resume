@@ -1,7 +1,7 @@
 <template>
   <education-list education.bind="education"></education-list>
-  <work-history-list work-history.bind="workHistory | take: 4" businesses.bind="businesses"></work-history-list>
-  <proficiency-list proficiencies.bind="proficiencies"></proficiency-list>
+  <work-history-list work-history.bind="workHistory | sortBy: 'start':'desc' | take: 4" businesses.bind="businesses"></work-history-list>
+  <proficiency-list proficiencies.bind="proficiencies | take: 6"></proficiency-list>
   <personal-item-list personal-items.bind="personalItems" if.bind="personalItems.length > 0"></personal-item-list>
   <!--<reference-list references.bind="references" businesses.bind="businesses"></reference-list>-->
 </template>

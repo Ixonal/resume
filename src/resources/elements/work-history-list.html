@@ -2,6 +2,6 @@
   <require from="./work-history-list.scss"></require>
 
   <common-section heading="Work History">
-    <work-history repeat.for="history of workHistory | sortBy: 'start':'desc'" work-history.bind="history" business.bind="businessFor(history)"></work-history>
+    <work-history repeat.for="history of workHistory" work-history.bind="history" business.bind="businessFor(history)"></work-history>
   </common-section>
 </template>
