@@ -1,12 +1,16 @@
-import * as gulp from 'gulp';
 import {Server as Karma} from 'karma';
 import {CLIOptions} from 'aurelia-cli';
+import * as path from 'path';
 
-export function unit(done) {
+let karma = done => {
   new Karma({
-    configFile: __dirname + '/../../karma.conf.js',
-    singleRun: !CLIOptions.hasFlag('watch')
-  }, done).start();
-}
+    configFile: path.join(__dirname, '/../../test/karma.conf.js'),
+    singleRun: !CLIOptions.hasFlag('watch'),
+    autoWatch: CLIOptions.hasFlag('watch')
+  }, function(exitCode) {
+    console.log('Karma has exited with ' + exitCode)
+    process.exit(exitCode)
+  }).start();
+};
 
-export default unit;
+export { karma as default };

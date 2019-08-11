@@ -16,7 +16,7 @@ export class Resume {
   constructor(
     private _dataRepository: DataRepository
   ) {
-
+    
   }
 
   activate() {

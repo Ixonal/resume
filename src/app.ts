@@ -1,4 +1,5 @@
 import { RouterConfiguration, Router } from "aurelia-router";
+import {PLATFORM} from 'aurelia-pal';
 
 export class App {
   router: Router;
@@ -11,8 +12,8 @@ export class App {
     
     config.map([
       { route: "",       name: "root",   redirect: "resume" },
-      { route: "resume", name: "resume", moduleId: "./resume-components/resume", title: "Resume", nav: true },
-      { route: "cv",     name: "cv",     moduleId: "./cv-components/cv",         title: "CV",     nav: true }
+      { route: "resume", name: "resume", moduleId: PLATFORM.moduleName("./resume-components/resume"), title: "Resume", nav: true },
+      { route: "cv",     name: "cv",     moduleId: PLATFORM.moduleName("./cv-components/cv"),         title: "CV",     nav: true }
     ]);
   }
 

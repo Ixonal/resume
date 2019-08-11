@@ -1,4 +1,4 @@
-import { app, database } from "firebase";
+import { app, database, initializeApp } from "firebase";
 import { Observable, BehaviorSubject } from "rxjs";
 
 import { Business, Education, PersonalItem, Proficiency, Reference, Subject, WorkHistory } from "../models/index";
@@ -19,7 +19,6 @@ export interface IData {
 
 //todo: make this cache in localStorage for loss of connectivity issues
 export class DataRepository {
-
   private _database: database.Database = database();
 
   private snapshot(path: string): Promise<any> {

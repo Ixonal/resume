@@ -1,14 +1,7 @@
-import * as firebase from "firebase";
 import {Aurelia} from 'aurelia-framework'
 import environment from './environment';
-
-//Configure Bluebird Promises.
-(<any>Promise).config({
-  warnings: {
-    wForgottenReturn: false
-  }
-});
-
+import {PLATFORM} from 'aurelia-pal';
+import * as firebase from "firebase";
 
 firebase.initializeApp({
   apiKey: "AIzaSyCgllsOYibFw6NhMTup0rCRBVAy3mJKFiA",
@@ -18,19 +11,16 @@ firebase.initializeApp({
   messagingSenderId: "325069630702"
 });
 
-
 export function configure(aurelia: Aurelia) {
   aurelia.use
     .standardConfiguration()
-    .feature('resources');
+    .feature(PLATFORM.moduleName('resources/index'));
 
-  if (environment.debug) {
-    aurelia.use.developmentLogging();
-  }
+  aurelia.use.developmentLogging(environment.debug ? 'debug' : 'warn');
 
   if (environment.testing) {
-    aurelia.use.plugin('aurelia-testing');
+    aurelia.use.plugin(PLATFORM.moduleName('aurelia-testing'));
   }
 
-  aurelia.start().then(() => aurelia.setRoot());
+  aurelia.start().then(() => aurelia.setRoot(PLATFORM.moduleName('app')));
 }
